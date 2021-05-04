@@ -1,0 +1,6 @@
+{
+  "db_data": {
+    "prod_db_name": "partymakers_prod",
+    "test_db_name": "partymakers_test"
+  }
+}
