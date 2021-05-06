@@ -1,5 +1,3 @@
-from turtledemo.chaos import h
-
 from flask import Blueprint, request, session, jsonify
 
 from user_control import register_user, username_taken, check_login
@@ -9,7 +7,11 @@ from utils import valid_password
 blueprint = Blueprint("auth", __name__)
 
 
-@blueprint.route('/register_user', methods=['POST'])
+def set_session_user(username: str) -> None:
+    session.__setattr__('current_user', username)
+
+
+@blueprint.route('/auth/register_user', methods=['POST'])
 def register_user_route():
     resp = {
         'success': True,
@@ -30,13 +32,15 @@ def register_user_route():
         register = register_user(**json_)
         if not register:
             raise Exception('Registration failed. Try again later.')
+        set_session_user(json_['username'])
     except Exception as e:
+        print(e)
         resp['success'] = False
         resp['msg'] = e.args[0]
     return jsonify(resp)
 
 
-@blueprint.route('/attempt_login', methods=['POST'])
+@blueprint.route('/auth/attempt_login', methods=['POST'])
 def attempt_login_route():
     resp = {
         'success': True,
@@ -54,6 +58,7 @@ def attempt_login_route():
         login = check_login(**json_)
         if not login:
             raise Exception('Login failed. Your password may be wrong.')
+        set_session_user(json_['username'])
     except Exception as e:
         resp['success'] = False
         resp['msg'] = e.args[0]

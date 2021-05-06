@@ -18,6 +18,7 @@ def register_user(**user_data):
         insert = data.insert_one({
             'username': user_data['username'],
             'password': hs(user_data['password']),
+            'bookmarked': [],
             'data': {
                 'firstName': user_data['firstName'],
                 'lastName': user_data['lastName']
@@ -38,6 +39,18 @@ def check_login(**user_data):
         })
         if not find:
             raise Exception('')
-    except:
+    except Exception:
         return False
     return True
+
+
+def get_all_users():
+    return [u for u in data.find({})]
+
+
+def get_user_data(username: str) -> dict or None:
+    return dict(data.find_one({'username': username}))
+
+
+def get_user_bookmarked_parties(username: str):
+    return list(get_user_data(username)['bookmarked'])
