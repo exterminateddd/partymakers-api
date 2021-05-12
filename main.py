@@ -1,4 +1,4 @@
-from flask import Flask, session, Response, request
+from flask import Flask, session, Response, request, jsonify
 from os import system
 
 from modules.auth import blueprint as auth_blueprint
@@ -15,7 +15,10 @@ app.register_blueprint(users_blueprint)
 def before_req():
     if 'current_user' not in session:
         if 'auth' not in str(request.endpoint):
-            return Response(status=403)
+            return jsonify({
+                "success": False,
+                "msg": "Not Authorized"
+            }), 403
 
 
 if __name__ == '__main__':

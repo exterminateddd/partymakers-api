@@ -30,7 +30,7 @@ def get_user_data_route(username: str):
 def get_all_users_route():
     resp = {
         'success': True,
-        'msg': '',
+        'msg': 'Successfully retrieved all users.',
         'data': []
     }
     try:
@@ -48,7 +48,7 @@ def get_all_users_route():
 def get_user_bookmarked_parties_route(username):
     resp = {
         'success': True,
-        'msg': 'Successfully retrieved parties.',
+        'msg': 'Successfully retrieved bookmarkedparties.',
         'data': []
     }
     try:
