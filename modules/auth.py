@@ -11,6 +11,10 @@ def set_session_user(username: str) -> None:
     session.__setattr__('current_user', username)
 
 
+def get_session_user() -> str or None:
+    return session.__getattribute__('current_user')
+
+
 @blueprint.route('/auth/register_user', methods=['POST'])
 def register_user_route():
     resp = {
@@ -62,4 +66,18 @@ def attempt_login_route():
     except Exception as e:
         resp['success'] = False
         resp['msg'] = e.args[0]
+    return jsonify(resp)
+
+
+@blueprint.route('/auth/get_current_user', methods=['GET'])
+def get_current_user_route():
+    resp = {
+        "success": True,
+        "data": ""
+    }
+    try:
+        resp['data'] = get_session_user()
+    except Exception as e:
+        resp['success'] = False
+
     return jsonify(resp)
