@@ -1,6 +1,6 @@
 from flask import Blueprint, request, session, jsonify
 
-from user_control import get_all_users, get_user_data, username_taken, get_user_bookmarked_parties
+from user_control import *
 
 
 blueprint = Blueprint("users", __name__)
