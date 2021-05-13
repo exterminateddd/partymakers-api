@@ -8,7 +8,7 @@ blueprint = Blueprint("auth", __name__)
 
 
 def set_session_user(username: str) -> None:
-    session.__setattr__('current_user', username)
+    session.__setitem__('current_user', username)
 
 
 def get_session_user() -> str or None:
