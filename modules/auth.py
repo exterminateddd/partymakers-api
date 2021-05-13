@@ -12,7 +12,7 @@ def set_session_user(username: str) -> None:
 
 
 def get_session_user() -> str or None:
-    return session.__getattribute__('current_user')
+    return session.__getitem__('current_user')
 
 
 @blueprint.route('/auth/register_user', methods=['POST'])

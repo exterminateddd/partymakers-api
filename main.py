@@ -6,6 +6,7 @@ from modules.users import blueprint as users_blueprint
 
 
 app = Flask(__name__)
+app.secret_key = 'secret_key'
 
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(users_blueprint)
