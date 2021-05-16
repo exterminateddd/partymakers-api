@@ -22,7 +22,7 @@ def before_req():
             }), 403
 
 
-@app.after_req
+@app.after_request
 def after_req(resp):
     resp.headers.add("Access-Control-Allow-Origin", "*")
 
