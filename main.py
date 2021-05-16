@@ -22,6 +22,13 @@ def before_req():
             }), 403
 
 
+@app.after_req
+def after_req(resp):
+    resp.headers.add("Access-Control-Allow-Origin", "*")
+
+    return resp
+
+
 if __name__ == '__main__':
     system('@cls')
     app.run(port='8000')
