@@ -51,5 +51,5 @@ def get_all_parties():
     return [i for i in data.find({})]
 
 
-def get_party_by_name(name: str):
-    return dict(data.find_one({"name": name}))
+def get_party_by_id(id_: int):
+    return dict(data.find_one({"id": id_}))
