@@ -86,7 +86,60 @@ Response 200
 {
   "success": true,
   "msg": "Successfully retrieved bookmarked parties",
-  "data": [{}, {}]
+  "data": [0, 1]
+}
+```
+Response 403
+```json
+{
+    "success": false,
+    "msg": "Not Authorized"
+}
+```
+## Party control `/party`
+#### POST `/create_party`
+Request
+```json
+{
+  "name": "",
+  "desc": "",
+  "date": "", // format YYYY-MM-DD-hh-mm
+  "coordinates": "", // format {X}-{Y}-{Z}
+  "location_main": "",
+  "location_add": "",
+  "price": 0,
+  "age": 0
+}
+```
+Response 200
+```json
+ {
+    "success": true,
+    "msg": "Successfully created party.",
+    "data": {
+      "id": 0
+    }
+}
+```
+Response 403
+```json
+{
+    "success": false,
+    "msg": "Not Authorized"
+}
+```
+#### DELETE `/delete_party`
+Request
+```json
+{
+  "id": 0
+}
+```
+Response 200
+```json
+ {
+    "success": true,
+    "msg": "Successfully deleted party."
 }
 ```
 Response 403
