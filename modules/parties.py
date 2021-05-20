@@ -67,3 +67,22 @@ def get_party_data_route(id_):
         resp['msg'] = e.args[0]
 
     return jsonify(resp)
+
+
+@blueprint.route('/party/get_all_parties', methods=['GET', 'PATCH'])
+def get_all_parties_route():
+    resp = {
+        "success": True,
+        "msg": "Successfully retrieved parties.",
+        "data": []
+    }
+    try:
+        party_data = get_all_parties()
+        if not party_data:
+            raise Exception('Failed to get parties')
+        resp['data'] = party_data
+    except Exception as e:
+        resp['success'] = False
+        resp['msg'] = e.args[0]
+
+    return jsonify(resp)
