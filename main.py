@@ -1,5 +1,5 @@
-from flask import Flask, session, Response, request, jsonify
 from os import system
+from flask import Flask, session, Response, request, jsonify
 
 from modules.auth import blueprint as auth_blueprint
 from modules.users import blueprint as users_blueprint
